@@ -23,7 +23,6 @@ RUN a2dismod mpm_event && \
 WORKDIR /var/www/html
 
 COPY apache2-foreground /usr/local/bin/
-RUN chmod +x /usr/local/bin/apache2-foreground
 
 EXPOSE 80
 EXPOSE 443
