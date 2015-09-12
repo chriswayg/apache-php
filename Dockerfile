@@ -6,7 +6,7 @@ MAINTAINER Christian Wagner chriswayg@gmail.com
 # webroot: /var/www/html/
 # Apache2 config: /etc/apache2/
 
-RUN apt-get -y update && \
+RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
       apache2 \
       libapache2-mod-php5 \
