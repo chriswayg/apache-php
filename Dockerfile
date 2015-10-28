@@ -14,11 +14,14 @@ RUN apt-get update && \
     apt-get clean && rm -r /var/lib/apt/lists/*
 
 # Apache + PHP requires preforking Apache for best results & enable Apache SSL
+# forward request and error logs to docker log collector
 RUN a2dismod mpm_event && \
     a2enmod mpm_prefork \
             ssl \
             rewrite && \
-    a2ensite default-ssl
+    a2ensite default-ssl && \
+    ln -sf /dev/stdout /var/log/apache2/access.log && \
+    ln -sf /dev/stderr /var/log/apache2/error.log
 
 WORKDIR /var/www/html
 
@@ -27,4 +30,4 @@ COPY apache2-foreground /usr/local/bin/
 EXPOSE 80
 EXPOSE 443
 
-CMD ["/usr/local/bin/apache2-foreground"]
+CMD ["apache2-foreground"]
