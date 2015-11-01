@@ -1,5 +1,9 @@
 # apache-php for Docker
+
 Docker image with Apache2 web server and PHP based on the official Debian Jessie image
+
+[![](https://badge.imagelayers.io/chriswayg/apache-php:latest.svg)](https://imagelayers.io/?images=chriswayg/apache-php:latest)
+
 - Apache 2.4 web server 
 - HTTPS/SSL enabled
 - PHP 5.6
