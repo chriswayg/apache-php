@@ -1,11 +1,11 @@
 # apache-php for Docker
 Docker image with Apache2 web server and PHP based on the official Debian Jessie image
-- Apache2.4 web server 
+- Apache 2.4 web server 
 - HTTPS/SSL enabled
 - PHP 5.6
 - logging enabled
 - all original Debian Packages (not compiled from source)
-- this image updates automatically on Docker Hub, when Debian image is updated
+- this image automatically updates on Docker Hub, each time the Debian image is updated
 
 ## Apache
 
@@ -23,40 +23,48 @@ PHP is a server-side scripting language designed for web development, but which 
 
 ![logo](https://raw.githubusercontent.com/docker-library/docs/master/php/logo.png)
 
-## Usage:
+## Quickstart:
 
 ### Example with host mount:
 
 ```
+mkdir -p html && echo "<?php phpinfo(); ?>" > html/index.php
+
 docker run -d --name=apache-php \
 --restart=always \
--p 8080:80 -p 8443:443 \
+-p 80:80 -p 443:443 \
 -v "$PWD/html":/var/www/html \
 chriswayg/apache-php
 ```
 
+Directories with important data:
+
 * Webroot: `/var/www/html/`
 * Apache2 config: `/etc/apache2/`
+* SSL: `/etc/ssl/`
 * PHP: `/etc/php5/apache2/php.ini`
 
 ### Alternatively create a `Dockerfile` for your project
 
-Where `src/` is the directory containing all your php code and `config/` contains your `php.ini` file. 
-We recommend that you add a custom `php.ini` configuration. `COPY` it into `/etc/php5/apache2/`.
+The `./html/` directory contains all your php files and the `./config/` directory contains your `php.ini` file. It is recommended to add a custom `php.ini` configuration. `COPY` it into `/etc/php5/apache2/`.
 
-```Dockerfile
+`Dockerfile`
+```
 FROM chriswayg/apache-php
-COPY src/ /var/www/html/
-COPY config/php.ini /etc/php5/apache2/
+COPY ./html/ /var/www/html/
+COPY ./config/php.ini /etc/php5/apache2/
 ```
 
 Then, run the commands to build and run the Docker image:
 
-```Console
-$ docker build -t my-php-app .
-$ docker run -d --name=my-php-app_1 -p 8080:80 -p 8443:443 chriswayg/apache-php
-$ docker logs my-php-app_1
 ```
+docker build -t my-php-site .
+docker run -d --name=my-php-site_1 -p 80:80 -p 443:443 chriswayg/apache-php
+docker logs my-php-site_1
+```
+### SSL Certificate & Key
+
+By default, Apache will use the Debian generated "snakeoil" key when serving SSL. Obviously this isn't sufficient or advisable for production, so you'll want to mount or copy a real certificate into `/etc/ssl/certs/` and the coreesponding key into `/etc/ssl/private/`. Edit `default-ssl.conf` to include the paths to your new cert and key and mount or copy it into `/etc/apache2/sites-available/` If you don't want to use SSL, you don't need to forward port 443 when running the container.
 
 ### Used by Concrete5.7 CMS Docker Image
 
