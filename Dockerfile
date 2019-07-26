@@ -6,11 +6,11 @@ MAINTAINER Christian Wagner chriswayg@gmail.com
 # webroot: /var/www/html/
 # Apache2 config: /etc/apache2/
 
-RUN apt-get update && \
-      DEBIAN_FRONTEND=noninteractive apt-get -y install \
+RUN apt update && \
+      DEBIAN_FRONTEND=noninteractive apt -y install \
       apache2 \
       libapache2-mod-php \
-    apt-get clean && rm -r /var/lib/apt/lists/*
+    apt clean && rm -r /var/lib/apt/lists/*
 
 # Apache + PHP requires preforking Apache for best results & enable Apache SSL
 # forward request and error logs to docker log collector
