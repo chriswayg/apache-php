@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:buster
 MAINTAINER Christian Wagner chriswayg@gmail.com
 
 # Usage:
@@ -9,8 +9,7 @@ MAINTAINER Christian Wagner chriswayg@gmail.com
 RUN apt-get update && \
       DEBIAN_FRONTEND=noninteractive apt-get -y install \
       apache2 \
-      libapache2-mod-php5 \
-      php5 && \
+      libapache2-mod-php \
     apt-get clean && rm -r /var/lib/apt/lists/*
 
 # Apache + PHP requires preforking Apache for best results & enable Apache SSL
