@@ -9,7 +9,7 @@ MAINTAINER Christian Wagner chriswayg@gmail.com
 RUN apt update && \
       DEBIAN_FRONTEND=noninteractive apt -y install \
       apache2 \
-      libapache2-mod-php \
+      libapache2-mod-php && \
     apt clean && rm -r /var/lib/apt/lists/*
 
 # Apache + PHP requires preforking Apache for best results & enable Apache SSL
