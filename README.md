@@ -7,7 +7,6 @@ Docker image with Apache2 web server and PHP based on the official Debian Buster
 - PHP 7
 - logging enabled
 - all original Debian Packages (not compiled from source)
-- this image automatically updates on Docker Hub, each time the Debian image is updated
 
 ## Apache
 
