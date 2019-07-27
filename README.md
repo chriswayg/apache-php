@@ -1,4 +1,5 @@
 # apache-php for Docker
+[![](https://images.microbadger.com/badges/image/chriswayg/apache-php.svg)](https://microbadger.com/images/chriswayg/apache-php)
 
 Docker image with Apache2 web server and PHP based on the official Debian Buster image
 
