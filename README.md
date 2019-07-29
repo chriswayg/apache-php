@@ -64,16 +64,16 @@ By default, Apache will use the Debian generated "snakeoil" key when serving SSL
 
 ### Directories with important data:
 
-Copy or mount needed data for these directories as described above or use [Data Volume Containers](https://docs.docker.com/userguide/dockervolumes/) to store the data.
+Copy or mount needed data for these directories as described above or use [Volume Containers](https://docs.docker.com/storage/volumes/) to store the data.
 
 * Webroot: `/var/www/html/`
 * Apache2 config: `/etc/apache2/`
 * SSL: `/etc/ssl/`
 * PHP: `/etc/php5/apache2/php.ini`
 
-### Used by Concrete5.7 CMS Docker Image
+### Used by Concrete5 CMS Docker Image
 
-See how this image is used as the base of my [Concrete5.7 CMS Docker Image](https://hub.docker.com/r/chriswayg/concrete5.7/) and the corresponding Github repository here: https://github.com/chriswayg/concrete5.7
+See how this image is used as the base of my [Concrete5 CMS Docker Image](https://hub.docker.com/r/chriswayg/concrete5.7/) and the corresponding Github repository here: https://github.com/chriswayg/concrete5
 
 ---
 ###### License:
